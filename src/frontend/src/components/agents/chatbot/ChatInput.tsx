@@ -44,7 +44,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
       onSubmit={() => {
         onMessageSend(inputText ?? "");
       }}
-      placeholderValue="Type your message here..."
+      placeholderValue="Jakeer Type your message here..."
     >
       <ImperativeControlPlugin ref={controlRef} />
     </ChatInputFluent>
