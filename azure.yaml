@@ -2,7 +2,7 @@
 
 name: azd-get-started-with-ai-chat
 metadata:
-  template: azd-get-started-with-ai-chat@1.0.1
+  template: azd-get-started-with-ai-chat@1.0.2
 requiredVersions:
   azd: ">=1.14.0"
   
