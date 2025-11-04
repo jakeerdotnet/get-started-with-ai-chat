@@ -93,6 +93,7 @@ module cognitiveServices '../ai/cognitiveservices.bicep' = {
     appInsightConnectionName: appInsightConnectionName
     appInsightConnectionString: applicationInsights.outputs.connectionString
     storageAccountId: storageAccount.outputs.id
+    storageAccountBlobEndpoint: storageAccount.outputs.primaryEndpoints.blob
     storageAccountConnectionName: storageAccount.outputs.name
   }
 }
@@ -133,10 +134,10 @@ module searchService '../search/search-services.bicep' =
 output storageAccountId string = storageAccount.outputs.id
 output storageAccountName string = storageAccount.outputs.name
 
-output applicationInsightsId string = !empty(applicationInsightsName) ? applicationInsights.outputs.id : ''
-output applicationInsightsName string = !empty(applicationInsightsName) ? applicationInsights.outputs.name : ''
-output logAnalyticsWorkspaceId string = !empty(logAnalyticsName) ? logAnalytics.outputs.id : ''
-output logAnalyticsWorkspaceName string = !empty(logAnalyticsName) ? logAnalytics.outputs.name : ''
+output applicationInsightsId string = !empty(applicationInsightsName) && !empty(logAnalyticsName) ? applicationInsights!.outputs.id : ''
+output applicationInsightsName string = !empty(applicationInsightsName) && !empty(logAnalyticsName) ? applicationInsights!.outputs.name : ''
+output logAnalyticsWorkspaceId string = !empty(logAnalyticsName) ? logAnalytics!.outputs.id : ''
+output logAnalyticsWorkspaceName string = !empty(logAnalyticsName) ? logAnalytics!.outputs.name : ''
 
 output aiServiceId string = cognitiveServices.outputs.id
 output aiServicesName string = cognitiveServices.outputs.name
@@ -144,8 +145,8 @@ output aiServiceEndpoint string = cognitiveServices.outputs.endpoints['OpenAI La
 output aiProjectEndpoint string = cognitiveServices.outputs.projectEndpoint
 output aiServicePrincipalId string = cognitiveServices.outputs.accountPrincipalId
 
-output searchServiceId string = !empty(searchServiceName) ? searchService.outputs.id : ''
-output searchServiceName string = !empty(searchServiceName) ? searchService.outputs.name : ''
-output searchServiceEndpoint string = !empty(searchServiceName) ? searchService.outputs.endpoint : ''
+output searchServiceId string = !empty(searchServiceName) ? searchService!.outputs.id : ''
+output searchServiceName string = !empty(searchServiceName) ? searchService!.outputs.name : ''
+output searchServiceEndpoint string = !empty(searchServiceName) ? searchService!.outputs.endpoint : ''
 
 output projectResourceId string = cognitiveServices.outputs.projectResourceId

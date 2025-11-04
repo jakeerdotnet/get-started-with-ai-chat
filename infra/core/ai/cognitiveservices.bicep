@@ -11,6 +11,7 @@ param appInsightsId string
 param appInsightConnectionString string
 param appInsightConnectionName string
 param storageAccountId string
+param storageAccountBlobEndpoint string
 param storageAccountConnectionName string
 
 @allowed([ 'Enabled', 'Disabled' ])
@@ -70,7 +71,7 @@ resource storageAccountConnection 'Microsoft.CognitiveServices/accounts/connecti
   parent: account
   properties: {
     category: 'AzureStorageAccount'
-    target: storageAccountId
+    target: storageAccountBlobEndpoint
     authType: 'AAD'
     isSharedToAll: true    
     metadata: {
